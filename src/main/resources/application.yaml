@@ -1,0 +1,13 @@
+server:
+  port: 8081
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:200} # Total number of threads that can be created
+    max-connections: ${TOMCAT_MAX_CONNECTIONS:8192} # Total number of connections that can be established
+    accept-count: ${TOMCAT_ACCEPT_COUNT:100} # Size of the work queue
+    connection-timeout: ${TOMCAT_CONNECTION_TIMEOUT:20000} # Timeout threshold, 20 seconds
+
+logging:
+  level:
+    org.apache.coyote: DEBUG
+    

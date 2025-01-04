@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  server-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8081"
+    environment:
+      TOMCAT_MAX_THREADS: 200
+      TOMCAT_MAX_CONNECTIONS: 8192
+      TOMCAT_ACCEPT_COUNT: 100
+      TOMCAT_CONNECTION_TIMEOUT: 20000
+  influxdb:
+    image: bitnami/influxdb:1.8.5
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+      - "8085:8088"
+    environment:
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+      - INFLUXDB_DB=myk6db
+      - INFLUXDB_HTTP_READINESS_TIMEOUT=30
+  granafa:
+    image: bitnami/grafana:latest
+    ports:
+      - "3000:3000"
